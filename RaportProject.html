@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Electrik Raport</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <article resource="#" typeof="schema:ScholarlyArticle">
+      <header>
+        <h1 property="schema:name">ELECTRIK</h1>
+        <p role="doc-subtitle" property="schema:alternateName"></p>
+      </header>
+      <meta property="schema:accessibilityFeature" content="alternativeText" />
+      <meta property="schema:accessibilityFeature" content="MathML" />
+      <meta property="schema:accessibilityHazard" content="noFlashingHazard" />
+
+      <section typeof="sa:AuthorsList">
+        <h3>Authors</h3>
+        <ul>
+          <li typeof="sa:ContributorRole" property="schema:author">
+            <meta property="schema:familyName" content="Amarandei" />
+            <span property="schema:name">Amarandei George</span>
+          </li>
+        </ul>
+        <ul>
+          <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person"></span>
+            <meta property="schema:familyName" content="Luca" />
+            <span property="schema:name">Luca Mihaela</span>
+          </li>
+        </ul>
+        <ul>
+          <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person">
+              <meta property="schema:familyName" content="Volcovinski" />
+              <span property="schema:name">Volcovinski Mihnea-Stefan</span>
+            </span>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Project Description</h2>
+        <p>
+          Electrik project is a mash-up web application meant for clients to buy
+          electrical products from different producers, to find easier charging
+          stations for their products, and also Electrik will provide a method
+          for paying energy invoices. Clients can subscribe to their favourite
+          products and will be notified if there are any specific changes on
+          them. Admins will be able see statistics based on sells, stocks and
+          users in time.
+        </p>
+        <a
+          href="https://profs.info.uaic.ro/~busaco/teach/courses/staw/projects/"
+          >Details here.</a
+        >
+      </section>
+      <section>
+        <h3>Used tehnologies:</h3>
+        <ul>
+          <li>
+            HTML
+          </li>
+          <li>CSS/SCSS</li>
+          <li>JavaScript</li>
+          <li>Node.Js</li>
+          <li>MongoDb</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Use Case:</h3>
+        <ul>
+          Client:<br />
+          <li>As a user, I will be able to login/register.</li>
+          <li>
+            As a user, I will be able to view my profile and bills of my buyed
+            products.
+          </li>
+          <li>As a user, I will be able to view my favourites products.</li>
+          <li>
+            As a user, I will be able to view a list of all products and filter
+            them based on categories.
+          </li>
+          <li>As a user, I will be able to buy products.</li>
+          <li>
+            As a user, I will be notified about products to which I subscribed.
+          </li>
+          <li>
+            As a user, I will be able to view a map with all the charging
+            stations and to filter them based on product categories.
+          </li>
+          <br />
+          Admin:<br />
+          <li>As an admin, I will be able to login.</li>
+          <li>
+            As an admin, I will be able to view statistics based on sells on the
+            website.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Used APIs and databases:</h3>
+        <section>
+          <h4>External APIs:</h4>
+          <ul>
+            <li>Google Maps API</li>
+            <li>Extern services that offers data from producers</li>
+            <li>Google Charts API</li>
+          </ul>
+          <h4>Internal Apis:</h4>
+          <ul>
+            <li>Users API</li>
+            <li>Products API</li>
+            <li>Statistics API</li>
+          </ul>
+        </section>
+        <section>
+          <h4>Database</h4>
+          <p>Each microservice will have its own database.</p>
+          <ul>
+            Users Database:
+            <br />
+            <li>user_id (primary key)</li>
+            <li>user_rights</li>
+            <li>email</li>
+            <li>first_name</li>
+            <li>last_name</li>
+            <li>pass hash</li>
+            <li>favorite_products[products_ids]</li>
+            <!-- <li>invoices[invoice_ids]</li>  -->
+          </ul>
+          <ul>
+            Products Database:
+            <br />
+            <li>products_id (primary key)</li>
+            <li>name</li>
+            <li>model</li>
+            <li>description</li>
+            <li>stock</li>
+            <li>price</li>
+            <li>producer</li>
+            <li>charging_stations_coordinates</li>
+          </ul>
+          <ul>
+            Invoices Database:
+            <br />
+            <li>invoice_id (primary key)</li>
+            <li>user_id</li>
+            <li>product_id</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2>Arhitecture:</h2>
+        <h3>C4 - Containers Diagram</h3>
+        <figure typeof="sa:image">
+          <img src="C4.Level1.png" alt="level1" />
+        </figure>
+        <br />
+        <h3>C4 - Component Diagram</h3>
+        <figure typeof="sa:image">
+          <img src="C4.Level2.png" alt="level2" />
+        </figure>
+        <br />
+        <h3>UML Diagram</h3>
+        <figure typeof="sa:image">
+          <img src="UML.png" alt="level2" />
+        </figure>
+      </section>
+      <section>
+        <h3>References:</h3>
+        <p>
+          Project GitHub page:
+          <a href="https://github.com/mihaellaluca/STAW">
+            https://github.com/mihaellaluca/STAW</a
+          >
+        </p>
+      </section>
+    </article>
+  </body>
+</html>
