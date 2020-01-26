@@ -14,7 +14,7 @@
   border-radius: 12px;
 }
 
-.login-comp {
+.register-comp {
   margin-left: auto;
   margin-right: auto;
   width: -webkit-fit-content;
@@ -48,4 +48,4 @@ p {
 input {
   height: 1.5em;
 }
-/*# sourceMappingURL=login-style.css.map */
+/*# sourceMappingURL=register-style.css.map */

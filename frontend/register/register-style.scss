@@ -1,0 +1,42 @@
+.form-container {
+    width: fit-content;
+    background-color: white;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+  }
+  
+  .register-comp {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+  
+  img {
+    width: 10rem;
+    height: 10rem;
+    margin-left: 3em;
+  }
+  
+  button {
+      background-color: #32A691;
+      width: 6em;
+      height: 2.5em;
+      font-family: sans-serif;
+      font-size: medium;
+      border: 0px;
+      border-radius: 3px;
+      margin-left: 2.5em;
+  }
+  
+  p {
+    font-size: small;
+    text-decoration: underline;
+    margin-left: 1em;
+}
+
+  input {
+      height: 1.5em;
+  }
+  
