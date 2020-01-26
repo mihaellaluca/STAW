@@ -1,5 +1,6 @@
 import './login-component.js';
 import '../header/header-component.js'
+import '../user-profile/user-profile-component.js'
 
 window.addEventListener('load', async () => {
     await login();
@@ -8,7 +9,7 @@ window.addEventListener('load', async () => {
 
 function login() {
     const main = document.querySelector('main');
-    const element = document.createElement('header-component');
+    const element = document.createElement('user-profile-component');
     main.appendChild(element);
 
 }
