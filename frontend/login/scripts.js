@@ -1,4 +1,5 @@
 import './login-component.js';
+import '../header/header-component.js'
 
 window.addEventListener('load', async () => {
     await login();
@@ -7,7 +8,7 @@ window.addEventListener('load', async () => {
 
 function login() {
     const main = document.querySelector('main');
-    const element = document.createElement('login-component');
+    const element = document.createElement('header-component');
     main.appendChild(element);
 
 }
