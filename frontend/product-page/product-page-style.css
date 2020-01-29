@@ -34,17 +34,17 @@ h1:after {
   background-color: #ccc;
 }
 
-img#userProfile {
+img#productImage {
   height: 20vw;
 }
 
-div.nameAndFavourites {
+div.productAndProducer {
   position: absolute;
   margin-left: 35%;
   margin-top: -20vw;
 }
 
-div.paymentHistory {
+div.description {
   margin-left: 3%;
 }
 
@@ -53,7 +53,7 @@ p {
   font-weight: bold;
 }
 
-p#profile {
+p#product, p#producer, p#productDescription {
   color: #32A691;
 }
 
@@ -72,8 +72,18 @@ button {
   font-weight: bold;
 }
 
-img#userProfile {
+img#productImage {
   height: 20vw;
   width: 30vw;
 }
-/*# sourceMappingURL=user-profile-style.css.map */
+
+p#description {
+  font-weight: 500;
+}
+
+div#priceAddCartAddFav {
+  position: absolute;
+  margin-left: 65%;
+  margin-top: -20vw;
+}
+/*# sourceMappingURL=product-page-style.css.map */
