@@ -25,7 +25,7 @@ class RegisterComponent extends HTMLElement {
                   <br>
                   <button type="submit">Register</button>
               </form>
-              <p>Already have an account.</p>
+              <p> <a href='/frontend/index.html'>Already have an account.</a></p>
               </div>
             </div>
           `;
