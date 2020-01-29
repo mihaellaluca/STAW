@@ -15,6 +15,27 @@ module.exports = function service() {
 					data: err
 				};
 			}
+		},
+		async getProductById(id) {
+			try {
+				let product = await repo.getById(id);
+				if (product == null) {
+					return {
+						status: 400,
+						data: 'product does not exist'
+					};
+				} else {
+					return {
+						status: 200,
+						data: product
+					};
+				}
+			} catch (err) {
+				return {
+					status: 400,
+					data: err
+				};
+			}
 		}
 	};
 };
