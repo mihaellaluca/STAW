@@ -12,6 +12,18 @@ module.exports = function repository() {
 	return {
 		async getAllProducts() {
 			return Product.find().exec();
+		},
+		putProducts(datas) {
+			Product.collection.insertMany(datas, (err, docs) => {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log('mission acomplished');
+				}
+			});
+		},
+		async getById(id) {
+			return Product.findById(id).exec();
 		}
 	};
 };

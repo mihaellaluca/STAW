@@ -22,6 +22,18 @@ module.exports = function repository() {
 		async findByEmail(email) {
 			let query = User.findOne({ email: email });
 			return query.exec();
+		},
+		async findById(id) {
+			let query = User.findById(id);
+			return query.exec();
+		},
+		async updateUserFavorites(data) {
+			let query = User.findOneAndUpdate({ _id: data.userId }, { $push: { favoriteProducts: data.productId } });
+			return query.exec();
+		},
+		async removeUserFavorite(data) {
+			let query = User.findOneAndUpdate({ _id: data.userId }, { $pull: { favoriteProducts: data.productId } });
+			return query.exec();
 		}
 	};
 };

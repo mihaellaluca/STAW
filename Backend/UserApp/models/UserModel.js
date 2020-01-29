@@ -6,7 +6,7 @@ let UserSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	password: String,
-	favoriteProducts: [ mongoose.Schema.Types.ObjectId ]
+	favoriteProducts: [ String ]
 });
 
 module.exports = mongoose.model('Users', UserSchema);
