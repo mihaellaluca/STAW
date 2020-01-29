@@ -5,11 +5,11 @@ class HeaderComponent extends HTMLElement {
             <div class="header">
             <img height="70" width="70" src = "./logo_transparent.png" alt="logo">
             <div class="header-right">
-              <a class="active" href="#home">Home</a>
-              <a href="#contact">My Account</a>
-              <a href="#about">My Cart</a>
+              <a class="active" href="/frontend/home">Home</a>
+              <a href="/frontend/user-profile">My Account</a>
+              <a href="/frontend/shopping-cart">My Cart</a>
               <a href="#contact">Notifications</a>
-              <a href="#about">L</a>
+              <a href="#leave">L</a>
             </div>
           </div>
           `;
