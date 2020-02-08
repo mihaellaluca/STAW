@@ -15,7 +15,7 @@ class LoginComponent extends HTMLElement {
                 <br>
                 <br>
                 <br>
-                <button type="submit">Login</button>
+                <button type="submit"><a href='/frontend/home'>Login</a></button>
             </form>
             <p> <a href='/frontend/register'>Create account.</a> </p>
             </div>
