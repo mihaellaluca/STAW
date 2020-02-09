@@ -58,6 +58,15 @@ module.exports = function service() {
 					data: err
 				};
 			}
+		},
+		async processUpdates(data) {
+			try {
+				if (data.type == 'new item') {
+					let newProduct = await repo.addProduct(data.modified);
+				} else {
+					await repo.modifyProduct(data.modified.name, data.modified.newPrice);
+				}
+			} catch (err) {}
 		}
 	};
 };

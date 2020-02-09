@@ -42,6 +42,37 @@ module.exports = function repository() {
 					}
 				});
 			}
+		},
+		async addProduct(data) {
+			console.log(data);
+			let product = new Product({
+				name: data.name,
+				description: data.description,
+				stock: data.stock,
+				price: data.price,
+				producer: data.producer,
+				type: data.type,
+				coordinates: data.coordinates
+			});
+			return product.save();
+		},
+		async modifyProduct(name, price) {
+			console.log(price);
+			Product.updateOne(
+				{
+					name: name
+				},
+				{
+					$set: {
+						price: price
+					}
+				},
+				function(err, product) {
+					if (err) throw error;
+					console.log(product);
+					console.log('update product complete');
+				}
+			);
 		}
 	};
 };
