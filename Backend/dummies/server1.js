@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Product = require('./ProductModel');
+const Coords = require('./Coords.js');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const port = 4001;
@@ -12,8 +13,35 @@ mongoose.connect('mongodb+srv://Electrik:Electrik@electrik-zcz1p.mongodb.net/Dum
 });
 app.use(bodyParser.json());
 
+coords = [
+	{
+		lat: 12.34,
+		lng: 5.213
+	},
+	{
+		lat: 2.34,
+		lng: 6.212
+	},
+	{
+		lat: 3.34,
+		lng: 12.213
+	},
+	{
+		lat: 6.34,
+		lng: 2.23
+	},
+	{
+		lat: 1.34,
+		lng: 65.6
+	},
+	{
+		lat: 23.121,
+		lng: 56.321
+	}
+];
+
 app.get('/populate', (req, res) => {
-	Product.collection.insertMany(products, (err, docs) => {
+	Coords.collection.insertMany(coords, (err, docs) => {
 		if (err) {
 			console.log(err);
 		} else {
@@ -55,7 +83,12 @@ app.post('/subscribe', async (req, res) => {
 					else {
 						try {
 							let products = await Product.find().exec();
-							res.status(200).send(products);
+							let cor = await Coords.find().exec();
+							let data = {
+								prod: products,
+								coordinates: cor
+							};
+							res.status(200).send(data);
 						} catch (err) {
 							console.log(err);
 						}
