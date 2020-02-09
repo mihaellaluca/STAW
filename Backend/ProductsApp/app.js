@@ -22,7 +22,10 @@ app.listen(port, () => {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			repo.putProducts(data);
+			if (!data.msg) {
+				repo.putProducts(data.prod);
+				repo.putCoords(data.coordinates);
+			}
 		});
 	fetch('http://localhost:4002/subscribe', {
 		method: 'POST',
@@ -33,7 +36,10 @@ app.listen(port, () => {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			repo.putProducts(data);
+			if (!data.msg) {
+				repo.putProducts(data.prod);
+				repo.putCoords(data.coordinates);
+			}
 		});
 	fetch('http://localhost:4003/subscribe', {
 		method: 'POST',
@@ -44,7 +50,10 @@ app.listen(port, () => {
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			repo.putProducts(data);
+			if (!data.msg) {
+				repo.putProducts(data.prod);
+				repo.putCoords(data.coordinates);
+			}
 		});
 	console.log(`Server listens at port ${port}`);
 });

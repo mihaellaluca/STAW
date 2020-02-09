@@ -1,27 +1,28 @@
 class LoginComponent extends HTMLElement {
-
-  loginUser() {
+	loginUser() {
 		console.log('loginUser');
 		const email = document.querySelector('#email').value;
 		const password = document.querySelector('#pass').value;
 		console.log(email);
-    console.log(password);
-    
+		console.log(password);
+
 		fetch('http://localhost:3000/users/login', {
 			method: 'POST',
 			headers: new Headers(),
-			body: JSON.stringify({email: email, password: password })
+			body: JSON.stringify({ email: email, password: password })
 		})
 			.then((res) => res.json())
-			.then((data) => {console.log(data);
-        document.cookie = `userId=${data.id}`;
-        document.cookie = `userName=${data.token}`;})
-      .catch((err) => console.log(err));
-      // window.location.href = "/frontend/home";
+			.then((data) => {
+				console.log(data);
+				document.cookie = `userId=${data.id}`;
+				document.cookie = `token=${data.token}`;
+			})
+			.catch((err) => console.log(err));
+		// window.location.href = "/frontend/home";
 	}
 
-  connectedCallback() {
-    this.innerHTML = `
+	connectedCallback() {
+		this.innerHTML = `
           <link rel="stylesheet" href="login/login-style.css">
           <div class="login-comp">
             <img src = "./logo_transparent.png" alt="logo">
@@ -42,7 +43,7 @@ class LoginComponent extends HTMLElement {
             </div>
           </div>
         `;
-  }
+	}
 }
 
-customElements.define("login-component", LoginComponent);
+customElements.define('login-component', LoginComponent);

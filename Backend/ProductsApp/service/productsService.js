@@ -16,6 +16,28 @@ module.exports = function service() {
 				};
 			}
 		},
+		async getAllCoords() {
+			try {
+				let coords = await repo.getAllCoords();
+				let justCoords = [];
+				coords.forEach((coordinate) => {
+					let cor = {
+						lat: coordinate.lat,
+						lng: coordinate.lng
+					};
+					justCoords.push(cor);
+				});
+				return {
+					status: 200,
+					data: justCoords
+				};
+			} catch (err) {
+				return {
+					status: 400,
+					data: err
+				};
+			}
+		},
 		async getProductById(id) {
 			try {
 				let product = await repo.getById(id);
