@@ -16,7 +16,8 @@ class RegisterComponent extends HTMLElement {
 		})
 			.then((res) => res.json())
 			.then((data) => console.log(data))
-			.catch((err) => console.log(err));
+      .catch((err) => console.log(err));
+      window.location.replace("http://127.0.0.1:5500/frontend/index.html");
 	}
 
 	connectedCallback() {
@@ -39,8 +40,8 @@ class RegisterComponent extends HTMLElement {
                   <input name="email" id="email" />
                   <br>
                   <br>
-                  <label for="pass" >Password:</label><br>
-                  <input name="pass" id="pass"/>
+                  <label for="pass">Password:</label><br>
+                  <input name="pass" id="pass" type="password"/>
                   <br>
                   <br>
                   <br>
