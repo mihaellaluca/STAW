@@ -70,5 +70,24 @@ router.post('/removeFavorite', async (req, res) => {
 			res.status(status).send(message);
 		});
 });
+router.post('/login', async (req, res) => {
+	var status = 0;
+	let bodyjson = JSON.stringify(req.body);
+	fetch('http://localhost:3001/users/login', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: bodyjson
+	})
+		.then((response) => {
+			status = response.status;
+
+			return response.json();
+		})
+		.then((message) => {
+			res.status(status).send(message);
+		});
+});
 
 module.exports = router;

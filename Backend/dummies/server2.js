@@ -1,6 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const port = 4002;
 const app = express();
+mongoose.connect('mongodb+srv://Electrik:Electrik@electrik-zcz1p.mongodb.net/Dummy2?retryWrites=true&w=majority', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 const products = [
 	{
 		name: 'Bafang 340 E-Bike Battery 43V 340Wh Canbus/UART - Black',

@@ -8,7 +8,7 @@ module.exports = function service() {
 				if (invoice == null) {
 					return {
 						status: 400,
-						data: 'something went wrong'
+						data: { code: 'something went wrong' }
 					};
 				} else {
 					return {
@@ -29,7 +29,7 @@ module.exports = function service() {
 				if (invoices == null) {
 					return {
 						status: 400,
-						data: 'there are no invoices here'
+						data: { code: 'there are no invoices here' }
 					};
 				} else {
 					return {
