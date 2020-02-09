@@ -15,7 +15,7 @@ class LoginComponent extends HTMLElement {
 			.then((res) => res.json())
 			.then((data) => {console.log(data);
         document.cookie = `userId=${data.id}`;
-        document.cookie = `userName=${data.token}`;})
+        document.cookie = `token=${data.token}`;})
       .catch((err) => console.log(err));
       // window.location.href = "/frontend/home";
 	}
