@@ -22,7 +22,7 @@ module.exports = function service() {
 				if (product == null) {
 					return {
 						status: 400,
-						data: 'product does not exist'
+						data: { code: 'product does not exist' }
 					};
 				} else {
 					return {

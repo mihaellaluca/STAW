@@ -1,6 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const port = 4003;
 const app = express();
+mongoose.connect('mongodb+srv://Electrik:Electrik@electrik-zcz1p.mongodb.net/Dummy3?retryWrites=true&w=majority', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 const products = [
 	{
 		name: 'CALB 100 Ah CA Series Lithium Iron Phosphate Battery',

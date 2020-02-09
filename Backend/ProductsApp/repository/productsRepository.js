@@ -14,13 +14,16 @@ module.exports = function repository() {
 			return Product.find().exec();
 		},
 		putProducts(datas) {
-			Product.collection.insertMany(datas, (err, docs) => {
-				if (err) {
-					console.log(err);
-				} else {
-					console.log('mission acomplished');
-				}
-			});
+			//console.log(datas);
+			if (!datas.msg) {
+				Product.collection.insertMany(datas, (err, docs) => {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log('mission acomplished');
+					}
+				});
+			}
 		},
 		async getById(id) {
 			return Product.findById(id).exec();
