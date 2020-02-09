@@ -1,4 +1,5 @@
 const repository = require('../repository/userRepository.js');
+const jwt = require('jsonwebtoken');
 module.exports = function service() {
 	const repo = repository();
 	return {
@@ -105,11 +106,12 @@ module.exports = function service() {
 						status: 400,
 						data: { code: 'email or password wrong' }
 					};
+				const token = jwt.sign({ _id: credentials._id }, 'secretForToken', { expiresIn: '2h' });
 				return {
 					status: 400,
 					data: {
 						id: credentials._id,
-						token: 'token'
+						token: token
 					}
 				};
 			} catch (err) {

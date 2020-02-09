@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const auth = require('./verifyToken.js');
+
+router.use(auth);
 
 router.get('/', async (req, res) => {
 	var status = 0;

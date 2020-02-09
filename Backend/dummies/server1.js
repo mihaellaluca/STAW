@@ -65,17 +65,6 @@ app.post('/subscribe', async (req, res) => {
 		}
 	});
 });
-// app / post('/...');
-
-// {
-// 	('/updated');
-// }
-
-// app / post('/unsubride');
-
-// {
-// 	('/updated');
-// }
 
 app.listen(port, () => {
 	console.log(`Server listens at port ${port}`);
