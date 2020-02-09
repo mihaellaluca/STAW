@@ -1,4 +1,5 @@
 const repository = require('../repository/userRepository.js');
+const jwt = require('jsonwebtoken');
 module.exports = function service() {
 	const repo = repository();
 	return {
@@ -26,7 +27,7 @@ module.exports = function service() {
 			} else
 				return {
 					status: 400,
-					data: 'email already used'
+					data: { code: 'email already used' }
 				};
 		},
 		async getUserById(id) {
@@ -36,7 +37,7 @@ module.exports = function service() {
 				if (user == null)
 					return {
 						status: 400,
-						data: 'user does not exist'
+						data: { code: 'user does not exist' }
 					};
 				else
 					return {
@@ -56,7 +57,7 @@ module.exports = function service() {
 				if (user == null) {
 					return {
 						status: 400,
-						data: 'something went wrong'
+						data: { code: 'something went wrong' }
 					};
 				} else {
 					return {
@@ -77,7 +78,7 @@ module.exports = function service() {
 				if (user == null) {
 					return {
 						status: 400,
-						data: 'something went wrong'
+						data: { code: 'something went wrong' }
 					};
 				} else {
 					return {
@@ -85,6 +86,34 @@ module.exports = function service() {
 						data: user
 					};
 				}
+			} catch (err) {
+				return {
+					status: 400,
+					data: err
+				};
+			}
+		},
+		async login(data) {
+			try {
+				let credentials = await repo.findByEmail(data.email);
+				if (credentials == null)
+					return {
+						status: 400,
+						data: { code: 'email or password wrong' }
+					};
+				if (credentials.password !== data.password)
+					return {
+						status: 400,
+						data: { code: 'email or password wrong' }
+					};
+				const token = jwt.sign({ _id: credentials._id }, 'secretForToken', { expiresIn: '2h' });
+				return {
+					status: 400,
+					data: {
+						id: credentials._id,
+						token: token
+					}
+				};
 			} catch (err) {
 				return {
 					status: 400,

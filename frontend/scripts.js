@@ -5,6 +5,7 @@ import './shopping-cart/shopping-cart-component.js'
 import './user-profile/user-profile-component.js'
 import './home/home-component.js'
 import './product-page/product-page-component.js'
+import './map/map-component.js'
 import {Router} from './vaadin-router.js';
 
 const outlet = document.querySelector('main');
@@ -16,4 +17,6 @@ router.setRoutes([
   {path: '/frontend/register', component: 'register-component'},
   {path: '/frontend/home', component: 'home-component'},
   {path: '/frontend/product', component: 'product-page-component'},
+  {path: '/frontend/map', component: 'map-component'},
+
 ]);
