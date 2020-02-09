@@ -1,25 +1,26 @@
 class RegisterComponent extends HTMLElement {
-    registerUser(){
-      console.log("registerUser");
-      const firstName = document.querySelector('#firstName').value;
-      const lastName = document.querySelector('#lastName').value;
-      const email = document.querySelector('#email').value;
-      const password = document.querySelector('#pass').value;
-      console.log(firstName);
-      console.log(lastName);
-      console.log(email);
-      console.log(password);
-      fetch('http://localhost:3000/users/register', {
-                method: 'POST',
-                headers : new Headers(),
-                body:JSON.stringify({firstname:firstName, lastname:lastName,email:email,password:password})
-            }).then((res) => res.json())
-            .then((data) =>  console.log(data))
-            .catch((err)=>console.log(err))
-        }
-        
-    connectedCallback() {
-      this.innerHTML = `
+	registerUser() {
+		console.log('registerUser');
+		const firstName = document.querySelector('#firstName').value;
+		const lastName = document.querySelector('#lastName').value;
+		const email = document.querySelector('#email').value;
+		const password = document.querySelector('#pass').value;
+		console.log(firstName);
+		console.log(lastName);
+		console.log(email);
+		console.log(password);
+		fetch('http://localhost:3000/users/register', {
+			method: 'POST',
+			headers: new Headers(),
+			body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email, password: password })
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+			.catch((err) => console.log(err));
+	}
+
+	connectedCallback() {
+		this.innerHTML = `
             <link rel="stylesheet" href="register/register-style.css">
             <div class="register-comp">
               <img src = "./logo_transparent.png" alt="logo">
@@ -49,8 +50,7 @@ class RegisterComponent extends HTMLElement {
               </div>
             </div>
           `;
-    }
-  }
-  
-  customElements.define("register-component", RegisterComponent);
-  
+	}
+}
+
+customElements.define('register-component', RegisterComponent);
