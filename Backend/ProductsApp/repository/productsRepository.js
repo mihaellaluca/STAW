@@ -58,7 +58,7 @@ module.exports = function repository() {
 		},
 		async modifyProduct(name, price) {
 			console.log(price);
-			Product.updateOne(
+			await Product.updateOne(
 				{
 					name: name
 				},
@@ -69,10 +69,11 @@ module.exports = function repository() {
 				},
 				function(err, product) {
 					if (err) throw error;
-					console.log(product);
-					console.log('update product complete');
+					//console.log(product);
+					//console.log('update product complete');
 				}
 			);
+			return Product.findOne({ name: name }).exec();
 		}
 	};
 };

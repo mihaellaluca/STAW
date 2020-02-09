@@ -18,5 +18,8 @@ router.post('/updates', async (req, res) => {
 	console.log(req.body);
 	await services.processUpdates(req.body);
 });
-
+router.get('/rss/feed', (req, res) => {
+	let msg = { msg: services.returnRssFeed() };
+	res.send(msg);
+});
 module.exports = router;
