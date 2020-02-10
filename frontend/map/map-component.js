@@ -69,7 +69,7 @@ class MapComponent extends HTMLElement {
     <header-component></header-component>
     <style>
       #map{
-        height: 400px;  /* The height is 400 pixels */
+        height: 570px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
     </style>
