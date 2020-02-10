@@ -22,4 +22,8 @@ router.get('/rss/feed', (req, res) => {
 	let msg = { msg: services.returnRssFeed() };
 	res.send(msg);
 });
+router.post('/subscribe', (req, res) => {
+	const subscription = req.body;
+	services.subscribe(subscription);
+});
 module.exports = router;
