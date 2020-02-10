@@ -1,5 +1,76 @@
 class ProductPageComponent extends HTMLElement {
+  getCookie(cname) {
+    //5e31c748d7b987364817cce9
+		var name = cname + '=';
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return '';
+	}
+  addToFavorite(){
+    console.log('addToFavorite');
+    console.log(this.getCookie('userId'));
+    fetch('http://localhost:3000/users/addFavorite', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json', auth: `${this.getCookie('token')}` },
+      body: JSON.stringify({'Content-Type':'application/json', userId:this.getCookie('userId'),productId:document.querySelector('#productName').innerText })
+    })
+      .then((res) => {
+        return res.json();
+      });
+    
 
+  }
+    generate(){
+      var productId = "5e405e5d9556064f9c2f8dfd";
+      fetch(`http://localhost:3000/products/5e405e5d9556064f9c2f8dfd`, {
+        method: 'GET',
+        headers: new Headers({auth: `${this.getCookie('token')}`})
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log('DAAATAAAAAA');
+          console.log(data);
+          console.log('END OF DAAATAAA');
+          var data2 =[];
+          data2.push(data);
+          data2.forEach((el) =>{
+            console.log(el);
+            var name = document.createElement('p');
+            name.innerText = el.type;
+            var producer = document.createElement('p');
+            producer.innerText = 'Producer:';
+            producer.setAttribute('id','producer');
+            var producerName = document.createElement('p');
+            producerName.innerText = el.producer;
+            document.querySelector('.productAndProducer').appendChild(name);
+            document.querySelector('.productAndProducer').appendChild(producer);
+            document.querySelector('.productAndProducer').appendChild(producerName);
+
+            var price = document.createElement('p');
+            price.setAttribute('id','price');
+            price.innerText = 'Price: ' + el.price + '$';
+            document.querySelector('#priceAddCartAddFav').insertBefore(price,document.querySelector('#priceAddCartAddFav').firstChild);
+
+            document.querySelector('#description').innerText = el.description;
+            document.querySelector('#productName').innerText = el.name;
+          });
+        });
+        // <p>HOLY STONE</p>
+        // <p id="producer">Producer:</p>
+        // <p>YUNIQUE</p>
+        // <p id="price">Price: 20$</p>
+    }
     connectedCallback() {
 
       this.innerHTML = `
@@ -10,28 +81,25 @@ class ProductPageComponent extends HTMLElement {
               <img id="productImage"  src = "./profilepic.jpg" alt="logo" />
               <div class="productAndProducer">
               <p id="product">Product</p>
-              <p>HOLY STONE</p>
-              <p id="producer">Producer:</p>
-              <p>YUNIQUE</p>
+
               </div>
               <div id="priceAddCartAddFav">
-              <p id="price">Price: 20$</p>
+              
               <button id="addCart">Add to cart</button>
-              <button id="addFavourites">Add to favourites</button>
+              <button id="addFavourites" onclick="this.parentElement.parentElement.parentElement.addToFavorite()">Add to favorites</button>
               </div>
               <div class="description">
+              <p>Product Name </p>
+              <p id="productName"></p>
               <p id="productDescription">Product Description</p>
-              <p id="description">Pachetul include: 1 baterie De inalta calitate si controlate 
-              in depozitele noastre Pachet: 2 x 750mAh baterie de 3.7V Incarcare 
-              rapida - usor de utilizat chiar si pentru incepatori Baterie compatibila 
-              cu randament excelent si producator de calitate italiana - bateria cu baterie 
-              - quadrocopter - cu barca - radio controlat
+              <p id="description">
               </p>
               </div>
             </div>
 
 
           `;
+          this.generate();
     }
   }
   
