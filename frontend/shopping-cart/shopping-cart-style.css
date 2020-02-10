@@ -1,3 +1,8 @@
+body {
+  font-family: sans-serif;
+  font-size: medium;
+}
+
 h1 {
   position: relative;
   font-size: 30px;
@@ -25,16 +30,6 @@ h1:after {
   margin-left: 10%;
 }
 
-p#total {
-  font-size: 1.5em;
-  font-weight: 800;
-}
-
-p#price, p#transport {
-  font-weight: 600;
-  font-size: 1.2em;
-}
-
 button {
   background-color: rgba(50, 166, 145, 0.43);
   border: none;
@@ -50,37 +45,51 @@ button {
   font-weight: bold;
 }
 
-div#shoppingList {
+#shoppingPrice {
+  margin-left: auto;
+  margin-right: auto;
   background-color: white;
-  margin-left: 20vw;
-  margin-right: 20vw;
-  width: 60vw;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: .5em 3em .5em;
 }
 
-div#shoppingPrice {
-  margin-top: 5vh;
-  background-color: white;
-  margin-left: 20vw;
-  margin-right: 20vw;
-  width: 60vw;
+#shoppingPrice #total {
+  font-size: medium;
+  font-weight: 800;
+}
+
+#shoppingPrice #price, #shoppingPrice #transport {
+  font-size: small;
+}
+
+.cart-products {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+  width: 45%;
+  padding: 0 1em 1em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#product {
   padding: 20px;
-  border-radius: 2%;
+  border-bottom: 2px solid black;
 }
 
-div#product {
-  padding: 20px;
-}
-
-div#product p#title {
+#title {
   font-weight: 600;
   font-size: 1.2em;
 }
 
-div#product {
-  border-bottom: 2px solid black;
-}
-
-div#product:last-child {
+#product:last-child {
   border-bottom: none;
 }
 /*# sourceMappingURL=shopping-cart-style.css.map */

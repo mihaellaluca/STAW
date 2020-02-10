@@ -65,10 +65,10 @@ h3 {
 }
 
 .items #add {
-  margin-left: 18em;
+  margin-left: 30em;
 }
 
-.items #specific-product {
+.items #name {
   font-weight: bold;
 }
 

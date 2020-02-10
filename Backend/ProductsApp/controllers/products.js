@@ -14,9 +14,12 @@ router.get('/:id', async (req, res) => {
 	let { status, data } = await services.getProductById(req.params['id']);
 	res.status(status).send(data);
 });
-router.post('/updates', (req, res) => {
+router.post('/updates', async (req, res) => {
 	console.log(req.body);
-	res.send('ms');
+	await services.processUpdates(req.body);
 });
-
+router.get('/rss/feed', (req, res) => {
+	let msg = { msg: services.returnRssFeed() };
+	res.send(msg);
+});
 module.exports = router;

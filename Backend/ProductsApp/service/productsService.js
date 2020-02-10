@@ -1,6 +1,8 @@
 const repository = require('../repository/productsRepository.js');
+const feedRss = require('./feedService.js');
 module.exports = function service() {
 	const repo = repository();
+	const feed = feedRss();
 	return {
 		async getAllProducts() {
 			try {
@@ -58,6 +60,22 @@ module.exports = function service() {
 					data: err
 				};
 			}
+		},
+		async processUpdates(data) {
+			try {
+				if (data.type == 'new item') {
+					let newProduct = await repo.addProduct(data.modified);
+					//console.log(newProduct);
+					feed.addNewItem(newProduct);
+				} else {
+					let modifiedProduct = await repo.modifyProduct(data.modified.name, data.modified.newPrice);
+					//console.log(modifiedProduct);
+					feed.addUpdatedPrice(modifiedProduct);
+				}
+			} catch (err) {}
+		},
+		returnRssFeed() {
+			return feed.returnXml();
 		}
 	};
 };

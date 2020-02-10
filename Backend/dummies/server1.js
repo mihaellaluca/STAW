@@ -56,7 +56,10 @@ app.patch('/:id', async (req, res) => {
 	let modification = await productModified.save();
 	let msg = {
 		type: 'price change',
-		modified: modification
+		modified: {
+			name: modification.name,
+			newPrice: req.body.price
+		}
 	};
 	let msgjson = JSON.stringify(msg);
 	await sendUpdates(msgjson);
@@ -65,6 +68,13 @@ app.patch('/:id', async (req, res) => {
 app.post('/', async (req, res) => {
 	let prod = new Product(req.body);
 	await prod.save();
+
+	let msg = {
+		type: 'new item',
+		modified: req.body
+	};
+	let msgjson = JSON.stringify(msg);
+	await sendUpdates(msgjson);
 	res.send('added');
 });
 
@@ -82,10 +92,23 @@ app.post('/subscribe', async (req, res) => {
 					if (err) res.status(400).send('failed');
 					else {
 						try {
+							let readyProducts = [];
 							let products = await Product.find().exec();
+							products.forEach((element) => {
+								let newElem = {
+									name: element.name,
+									description: element.description,
+									stock: element.stock,
+									price: element.price,
+									producer: element.producer,
+									type: element.type,
+									coordinates: element.coordinates
+								};
+								readyProducts.push(newElem);
+							});
 							let cor = await Coords.find().exec();
 							let data = {
-								prod: products,
+								prod: readyProducts,
 								coordinates: cor
 							};
 							res.status(200).send(data);
@@ -108,9 +131,9 @@ async function sendUpdates(msgjson) {
 		if (err) console.log(err);
 		else {
 			let subs = data.toString().split(',');
-			console.log(subs);
+			//console.log(subs);
 			subs.forEach((sub) => {
-				console.log(typeof sub);
+				//console.log(typeof sub);
 				if (sub !== '') {
 					fetch(sub, {
 						method: 'POST',

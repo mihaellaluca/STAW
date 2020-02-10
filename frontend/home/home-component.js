@@ -1,3 +1,5 @@
+import './../products/products-component.js';
+
 class HomeComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -39,93 +41,11 @@ class HomeComponent extends HTMLElement {
         </div>
     
         <div class="items">
-        <div class="product-container">
-            <p id="specific-product">
-            Product name here - Producer - Type
-            </p>
-            <p id="description">
-            Incarcator pentru baterii drone Hubsan, Syma, Wltoys, cu 5 sloturi
-            </p>
-            <div class="down">
-            <div class="left">
-            <p id="status">
-            available
-            </p>
-            <p id="price">
-            Price: 20$
-            </p>
-            </div>
-            <button class="right" id="add">Add to cart</button>
-            </div>
+          <products-component></products-component>
         </div>
-        <hr>
-
-        <div class="product-container">
-        <p id="specific-product">
-        Product name here - Producer - Type
-        </p>
-        <p id="description">
-        Incarcator pentru baterii drone Hubsan, Syma, Wltoys, cu 5 sloturi
-        </p>
-        <div class="down">
-        <div class="left">
-        <p id="status">
-        available
-        </p>
-        <p id="price">
-        Price: 20$
-        </p>
-        </div>
-        <button class="right" id="add">Add to cart</button>
-        </div>
-    </div>
-    <hr>
-
-    <div class="product-container">
-    <p id="specific-product">
-    Product name here - Producer - Type
-    </p>
-    <p id="description">
-    Incarcator pentru baterii drone Hubsan, Syma, Wltoys, cu 5 sloturi
-    </p>
-    <div class="down">
-    <div class="left">
-    <p id="status">
-    available
-    </p>
-    <p id="price">
-    Price: 20$
-    </p>
-    </div>
-    <button class="right" id="add">Add to cart</button>
-    </div>
-</div>
-<hr>
-<div class="product-container">
-<p id="specific-product">
-Product name here - Producer - Type
-</p>
-<p id="description">
-Incarcator pentru baterii drone Hubsan, Syma, Wltoys, cu 5 sloturi
-</p>
-<div class="down">
-<div class="left">
-<p id="status">
-available
-</p>
-<p id="price">
-Price: 20$
-</p>
-</div>
-<button class="right" id="add">Add to cart</button>
-</div>
-</div>
-<hr>
-       
-    </div>
           `;
 
-    function filter() {}
+
   }
 }
 
