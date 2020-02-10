@@ -1,8 +1,10 @@
 const repository = require('../repository/productsRepository.js');
 const feedRss = require('./feedService.js');
+const notification = require('./notificationService.js');
 module.exports = function service() {
 	const repo = repository();
 	const feed = feedRss();
+	const notifications = notification();
 	return {
 		async getAllProducts() {
 			try {
@@ -71,11 +73,15 @@ module.exports = function service() {
 					let modifiedProduct = await repo.modifyProduct(data.modified.name, data.modified.newPrice);
 					//console.log(modifiedProduct);
 					feed.addUpdatedPrice(modifiedProduct);
+					notifications.notify(modifiedProduct);
 				}
 			} catch (err) {}
 		},
 		returnRssFeed() {
 			return feed.returnXml();
+		},
+		subscribe(data) {
+			notifications.subscribe(data);
 		}
 	};
 };
