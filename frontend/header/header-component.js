@@ -5,7 +5,7 @@ class HeaderComponent extends HTMLElement {
             <div class="header">
             <img height="70" width="70" src = "./logo_transparent.png" alt="logo">
             <div class="header-right">
-              <a class="active" href="/frontend/home">Home</a>
+              <a href="/frontend/home">Home</a>
               <a href="/frontend/user-profile">My Account</a>
               <a href="/frontend/shopping-cart">My Cart</a>
               <a href="/frontend/product">Notifications</a>

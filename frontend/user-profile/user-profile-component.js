@@ -16,36 +16,22 @@ class UserProfileComponent extends HTMLElement {
 	}
       //http://localhost:3000/users/id-ul userului
       //http://localhost:3000/invoices/id-ul userului
-    removeFromFavourites(){
-      console.log(this.parentElement.innerText.split("R",1));
-
-      fetch('http://localhost:3000/user/profile/removeFavorites', {
-        method: 'POST',
-        headers: new Headers({ auth: `${this.getCookie('token')}` }),
-        body: JSON.stringify({ userId:this.getCookie('userId'),productName:this.parentElement.innerText.split("R",1)})
-      })
-        .then((res) => {
-          return res.json();
-        });
+    // removeFromFavourites(){
+    //   console.log(this.parentElement.innerText.split("R",1));
+    //   var au= this.getCookie('token');
+    //   console.log(au);
+    //   fetch('http://localhost:3000/users/removeFavorite', {
+    //     method: 'POST',
+    //     headers: {'Content-Type':'application/jsnon',auth: this.getCookie('token') },
+    //     body: JSON.stringify({ userId:this.getCookie('userId'),productId:this.parentElement.innerText.split("R",1)})
+    //   })
+    //     .then((res) => {
+    //       return res.json();
+    //     });
       
 
-    }
-    generate(){
-
-      // console.log('generate function');
-      //  let dicti = [{username:'Costel',favourites:['Baterie1','Baterie2']}];
-      //var paymentHistory = [{name:"Drone - Baterie reincarcabila Lipo",payed:40},{name:"Drone - Baterie reincarcabila Lipo",payed:44},{name:"Drone - Baterie reincarcabila Lipo",payed:46}]
-      //console.log(dicti);
-    //   {
-    //     "favoriteProducts": [],
-    //     "_id": "5e31c748d7b987364817cce9",
-    //     "userRights": 0,
-    //     "firstName": "Mare",
-    //     "lastName": "Boss",
-    //     "email": "mail@mail.com",
-    //     "password": "abc",
-    //     "__v": 0
     // }
+    generate(){
       const userId = this.getCookie('userId');
       fetch(`http://localhost:3000/users/${userId}`, {
         method: 'GET',
@@ -71,7 +57,23 @@ class UserProfileComponent extends HTMLElement {
           for(var i = 0; i< el.favoriteProducts.length;i++){
             var liEl = document.createElement('li');
             var button = document.createElement('button');
-            button.addEventListener('click',this.removeFromFavourites);
+            button.addEventListener('click',function(){
+              console.log(this.parentElement.innerText.split("R",1));
+              var au= this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('token');
+              console.log(au);
+              console.log(this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('userId'));
+              console.log(this.parentElement.innerText.split("Remove",1)[0]);
+              fetch('http://localhost:3000/users/removeFavorite', {
+                method: 'POST',
+                headers: {'Content-Type':'application/jsnon',auth: this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('token') },
+                body: JSON.stringify({'Content-Type':'application/json', userId:this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('userId'),productId:this.parentElement.innerText.split("Remove",1)[0]})
+              })
+                .then((res) => {
+                  return res.json();
+                });
+              
+        
+            });
             button.innerText = 'Remove';
             liEl.innerText = el.favoriteProducts[i];
             liEl.appendChild(button);
@@ -113,7 +115,7 @@ class UserProfileComponent extends HTMLElement {
 
     }
     connectedCallback() {
-
+      this.tk = this.getCookie('token');
       this.innerHTML = `
             <link rel="stylesheet" href="user-profile/user-profile-style.css">
             <header-component></header-component>
