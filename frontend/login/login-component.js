@@ -36,9 +36,10 @@ class LoginComponent extends HTMLElement {
                 <input name="pass" id="pass" type="password"/>
                 <br>
                 <br>
-                <br>
+				<br>
+			
             </form>
-            <button type="submit" onclick="this.parentElement.parentElement.parentElement.loginUser()"><a href="/frontend/home">Login</a></button>
+			<button type="submit" onclick="this.parentElement.parentElement.parentElement.loginUser()"><a id="link" href="/frontend/home">Login</a></button>
             <p> <a href='/frontend/register'>Create account.</a> </p>
             </div>
           </div>

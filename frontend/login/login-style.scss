@@ -6,7 +6,10 @@
   flex-direction: column;
   border-radius: 12px;
 }
-
+a#link{
+  text-decoration: none;
+  color: black;
+}
 .login-comp {
   margin-left: auto;
   margin-right: auto;
