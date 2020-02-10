@@ -31,7 +31,7 @@ export class ProductsComponent extends HTMLElement {
                 ${this.newProduct.price}
                 </p>
               </div>
-            <button class="btn" id="${this.newProduct._id}">Add to cart</button>
+            <button class="btn" id="btn${this.newProduct._id}">Add to cart</button>
             </div>
         </div>
         <hr>
@@ -41,7 +41,7 @@ export class ProductsComponent extends HTMLElement {
     // console.log("product", typeof(this.newProduct._id),this.newProduct._id);
     // console.log("parent element: ", document.getElementById(this.newProduct._id));
     // console.log("child element: ", document.getElementById(this.newProduct._id).children[2].children[0].children[1].innerText);
-    document.getElementById(this.newProduct._id).addEventListener("click", e => {
+    document.getElementById('btn'+this.newProduct._id).addEventListener("click", e => {
       e.preventDefault();
       var product = {
         id: this.newProduct._id,
