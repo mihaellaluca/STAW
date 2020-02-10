@@ -1,23 +1,32 @@
 import { ShoppingCartComponent } from "./../shopping-cart/shopping-cart-component.js";
 
-class ProductsComponent extends HTMLElement {
+export class ProductsComponent extends HTMLElement {
+  constructor(product) {
+    super();
+    this.newProduct = product;
+  }
 
   connectedCallback() {
+    if (this.newProduct.stock) {
+      this.status = "available";
+    } else {
+      this.status = "not available";
+    }
     this.innerHTML = `
         <div class="product-container" id="product-id">
             <p id="name">
-            Product name here - Producer - Type
+           ${this.newProduct.name}
             </p>
             <p id="description">
-            Incarcator pentru baterii drone Hubsan, Syma, Wltoys, cu 5 sloturi
+            ${this.newProduct.description}
             </p>
             <div class="down">
               <div class="left">
                 <p id="status">
-                 available
+                ${this.status}
                 </p>
                 <p id="price">
-                Price: 20$
+                ${this.newProduct.price}$
                 </p>
               </div>
             <button class="btn" id="btn">Add to cart</button>
@@ -38,8 +47,10 @@ class ProductsComponent extends HTMLElement {
       };
       ShoppingCartComponent.cartProducts.push(product);
       window.alert("Product added to cart!");
-      console.log("array:", ShoppingCartComponent.cartProducts);
-      localStorage.setItem('shopping-list', JSON.stringify(ShoppingCartComponent.cartProducts));
+      localStorage.setItem(
+        "shopping-list",
+        JSON.stringify(ShoppingCartComponent.cartProducts)
+      );
     });
   }
 }

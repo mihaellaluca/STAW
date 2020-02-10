@@ -1,6 +1,41 @@
-import './../products/products-component.js';
+import "./../products/products-component.js";
+import { ProductsComponent } from "./../products/products-component.js";
+import "./../map/map-component.js";
 
 class HomeComponent extends HTMLElement {
+  getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  async getAllProducts() {
+    let token = this.getCookie("token");
+    const response = await fetch("http://localhost:3000/products/", {
+      headers: { auth: token }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("data", data);
+        data.forEach(product => {
+          const comp = new ProductsComponent(product);
+          comp.content = product;
+          const items = document.querySelector("#items");
+          items.appendChild(comp);
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   connectedCallback() {
     this.innerHTML = `
     <link rel="stylesheet" href="home/home-style.css">
@@ -14,7 +49,7 @@ class HomeComponent extends HTMLElement {
     </div>
     <div class="container">
         <div class="filter-side">
-            <a href="">See the map of charging stations >></a>
+            <a href="/frontend/map">See the map of charging stations >></a>
             <br><br>
             <input type="text" placeholder="Search.." onkeyup="filter()">
             <br><br>
@@ -40,12 +75,12 @@ class HomeComponent extends HTMLElement {
             </div>
         </div>
     
-        <div class="items">
-          <products-component></products-component>
+        <div class="items" id="items">
+          
         </div>
           `;
 
-
+    this.getAllProducts();
   }
 }
 
