@@ -8,7 +8,7 @@ let subscriptions = [];
 module.exports = function notification() {
 	return {
 		subscribe(data) {
-			subscriptions.push(data);
+			if (subscriptions.includes(data) == false) subscriptions.push(data);
 		},
 		notify(elem) {
 			const payload = {
