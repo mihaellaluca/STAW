@@ -13,16 +13,17 @@ export class CartProductComponent extends HTMLElement {
             <p id="description"> ${this.newProduct.description}</p>
             <p id="price"> ${this.newProduct.price}</p>
             <p id="pieces">Pieces: 1 </p>
-            <button id="remove">Remove from cart</button>
+            <button class="btn" id=${this.newProduct.id}>Remove from cart</button>
         </div>
          
     `;
-
-    document.getElementById("remove").addEventListener("click", e => {
+    console.log("iddddd", this.newProduct.id);
+     document.getElementById(this.newProduct.id).addEventListener("click", e => {
         e.preventDefault();
         window.alert("Product removed from cart!");
         for (let index in ShoppingCartComponent.cartProducts) {
-            if (ShoppingCartComponent.cartProducts[index] === this.newProduct) {
+          console.log("cartproduct[index]=", ShoppingCartComponent.cartProducts[index], " AND ", this.newProduct);
+            if (ShoppingCartComponent.cartProducts[index].id === this.newProduct.id) {
               console.log("removing item");
               ShoppingCartComponent.cartProducts.splice(index,1);
               break;
