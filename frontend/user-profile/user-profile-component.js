@@ -65,8 +65,8 @@ class UserProfileComponent extends HTMLElement {
               console.log(this.parentElement.innerText.split("Remove",1)[0]);
               fetch('http://localhost:3000/users/removeFavorite', {
                 method: 'POST',
-                headers: {'Content-Type':'application/jsnon',auth: this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('token') },
-                body: JSON.stringify({'Content-Type':'application/json', userId:this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('userId'),productId:this.parentElement.innerText.split("Remove",1)[0]})
+                headers: {'Content-Type':'application/json',auth: this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('token').toString() },
+                body: JSON.stringify({userId:this.parentElement.parentElement.parentElement.parentElement.parentElement.getCookie('userId'),productId:this.parentElement.innerText.split("Remove",1)[0]})
               })
                 .then((res) => {
                   return res.json();
