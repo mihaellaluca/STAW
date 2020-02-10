@@ -108,7 +108,7 @@ module.exports = function service() {
 					};
 				const token = jwt.sign({ _id: credentials._id }, 'secretForToken', { expiresIn: '2h' });
 				return {
-					status: 400,
+					status: 200,
 					data: {
 						id: credentials._id,
 						token: token

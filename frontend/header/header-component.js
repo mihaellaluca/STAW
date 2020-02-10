@@ -8,7 +8,7 @@ class HeaderComponent extends HTMLElement {
               <a class="active" href="/frontend/home">Home</a>
               <a href="/frontend/user-profile">My Account</a>
               <a href="/frontend/shopping-cart">My Cart</a>
-              <a href="/frontend/map">Notifications</a>
+              <a href="/frontend/product">Notifications</a>
               <a href="#leave">L</a>
             </div>
           </div>

@@ -11,7 +11,7 @@ class RegisterComponent extends HTMLElement {
 		console.log(password);
 		fetch('http://localhost:3000/users/register', {
 			method: 'POST',
-			headers: new Headers(),
+			headers: {'content-type':'application/json'},
 			body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email, password: password })
 		})
 			.then((res) => res.json())

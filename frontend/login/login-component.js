@@ -8,7 +8,7 @@ class LoginComponent extends HTMLElement {
 
 		fetch('http://localhost:3000/users/login', {
 			method: 'POST',
-			headers: new Headers(),
+			headers: {'content-type':'application/json'},
 			body: JSON.stringify({ email: email, password: password })
 		})
 			.then((res) => res.json())
