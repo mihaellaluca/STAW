@@ -4,6 +4,7 @@ export class ProductsComponent extends HTMLElement {
   constructor(product) {
     super();
     this.newProduct = product;
+    console.log("newProduct!!", this.newProduct);
   }
 
   connectedCallback() {
@@ -12,8 +13,9 @@ export class ProductsComponent extends HTMLElement {
     } else {
       this.status = "not available";
     }
+   
     this.innerHTML = `
-        <div class="product-container" id="product-id">
+        <div class="product-container" id=${this.newProduct._id}>
             <p id="name">
            ${this.newProduct.name}
             </p>
@@ -26,23 +28,29 @@ export class ProductsComponent extends HTMLElement {
                 ${this.status}
                 </p>
                 <p id="price">
-                ${this.newProduct.price}$
+                ${this.newProduct.price}
                 </p>
               </div>
-            <button class="btn" id="btn">Add to cart</button>
+            <button class="btn" id="${this.newProduct._id}">Add to cart</button>
             </div>
         </div>
         <hr>
         
         `;
 
-    document.getElementById("btn").addEventListener("click", e => {
+    // console.log("product", typeof(this.newProduct._id),this.newProduct._id);
+    // console.log("parent element: ", document.getElementById(this.newProduct._id));
+    // console.log("child element: ", document.getElementById(this.newProduct._id).children[2].children[0].children[1].innerText);
+    document.getElementById(this.newProduct._id).addEventListener("click", e => {
       e.preventDefault();
       var product = {
-        name: document.getElementById("name").innerText,
-        description: document.getElementById("description").innerText,
-        status: document.getElementById("status").innerText,
-        price: document.getElementById("price").innerText,
+        id: this.newProduct._id,
+        name: document.getElementById(this.newProduct._id).children[0].innerText,
+        description: document.getElementById(this.newProduct._id).children[1].innerText,
+        status: document.getElementById(this.newProduct._id).children[2].children[0].children[0].innerText,
+        price: document.getElementById(this.newProduct._id).children[2].children[0].children[1].innerText,
+        model:this.newProduct.type,
+        producer:this.newProduct.producer,        
         pieces: 1
       };
       ShoppingCartComponent.cartProducts.push(product);
