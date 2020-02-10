@@ -13,12 +13,12 @@ export class ProductsComponent extends HTMLElement {
     } else {
       this.status = "not available";
     }
-   
+
     this.innerHTML = `
         <div class="product-container" id=${this.newProduct._id}>
-            <p id="name">
+            <a href="/frontend/product" id="name">
            ${this.newProduct.name}
-            </p>
+            </a>
             <p id="description">
             ${this.newProduct.description}
             </p>
@@ -41,25 +41,38 @@ export class ProductsComponent extends HTMLElement {
     // console.log("product", typeof(this.newProduct._id),this.newProduct._id);
     // console.log("parent element: ", document.getElementById(this.newProduct._id));
     // console.log("child element: ", document.getElementById(this.newProduct._id).children[2].children[0].children[1].innerText);
-    document.getElementById('btn'+this.newProduct._id).addEventListener("click", e => {
-      e.preventDefault();
-      var product = {
-        id: this.newProduct._id,
-        name: document.getElementById(this.newProduct._id).children[0].innerText,
-        description: document.getElementById(this.newProduct._id).children[1].innerText,
-        status: document.getElementById(this.newProduct._id).children[2].children[0].children[0].innerText,
-        price: document.getElementById(this.newProduct._id).children[2].children[0].children[1].innerText,
-        model:this.newProduct.type,
-        producer:this.newProduct.producer,        
-        pieces: 1
-      };
-      ShoppingCartComponent.cartProducts.push(product);
-      window.alert("Product added to cart!");
-      localStorage.setItem(
-        "shopping-list",
-        JSON.stringify(ShoppingCartComponent.cartProducts)
-      );
-    });
+    document
+      .getElementById("btn" + this.newProduct._id)
+      .addEventListener("click", e => {
+        e.preventDefault();
+        var product = {
+          id: this.newProduct._id,
+          name: document.getElementById(this.newProduct._id).children[0]
+            .innerText,
+          description: document.getElementById(this.newProduct._id).children[1]
+            .innerText,
+          status: document.getElementById(this.newProduct._id).children[2]
+            .children[0].children[0].innerText,
+          price: document.getElementById(this.newProduct._id).children[2]
+            .children[0].children[1].innerText,
+          model: this.newProduct.type,
+          producer: this.newProduct.producer,
+          pieces: 1
+        };
+        ShoppingCartComponent.cartProducts.push(product);
+        window.alert("Product added to cart!");
+        localStorage.setItem(
+          "shopping-list",
+          JSON.stringify(ShoppingCartComponent.cartProducts)
+        );
+      });
+
+    document
+      .getElementById(this.newProduct._id)
+      .children[0].addEventListener("mouseover", e => {
+        console.log("putem adauga");
+        localStorage.setItem("productId", this.newProduct._id);
+      });
   }
 }
 

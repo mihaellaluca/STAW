@@ -1,6 +1,5 @@
 class ProductPageComponent extends HTMLElement {
   getCookie(cname) {
-    //5e31c748d7b987364817cce9
 		var name = cname + '=';
 		var decodedCookie = decodeURIComponent(document.cookie);
 		var ca = decodedCookie.split(';');
@@ -30,8 +29,8 @@ class ProductPageComponent extends HTMLElement {
 
   }
     generate(){
-      var productId = "5e405e5d9556064f9c2f8dfd";
-      fetch(`http://localhost:3000/products/5e405e5d9556064f9c2f8dfd`, {
+      var productId = localStorage.getItem('productId');
+      fetch(`http://localhost:3000/products/${productId}`, {
         method: 'GET',
         headers: new Headers({auth: `${this.getCookie('token')}`})
       })
@@ -39,9 +38,7 @@ class ProductPageComponent extends HTMLElement {
           return res.json();
         })
         .then((data) => {
-          console.log('DAAATAAAAAA');
           console.log(data);
-          console.log('END OF DAAATAAA');
           var data2 =[];
           data2.push(data);
           data2.forEach((el) =>{
@@ -76,7 +73,7 @@ class ProductPageComponent extends HTMLElement {
       this.innerHTML = `
             <link rel="stylesheet" href="product-page/product-page-style.css">
             <header-component></header-component>
-            <h1 id="title">Batteries for drones</h1>
+            <h1 id="title">Product Page</h1>
             <div class="productPictureNameAndProduct">
               <img id="productImage"  src = "./profilepic.jpg" alt="logo" />
               <div class="productAndProducer">

@@ -124,7 +124,6 @@ class UserProfileComponent extends HTMLElement {
               <img id="userProfile"  src = "./microservices.jpeg" alt="logo" />
               <div class="nameAndFavourites">
               <p id="profile">Profile</p>
-              <p>User Name</p>
 
 
               </div>
