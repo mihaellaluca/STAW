@@ -101,6 +101,7 @@ export class ShoppingCartComponent extends HTMLElement {
       myNode.innerHTML = "No product added";
       myNode.style.backgroundColor = "transparent";
       document.getElementById("shoppingPrice").style.display = "none";
+      ShoppingCartComponent.cartProducts = [];
     });
   }
 }
