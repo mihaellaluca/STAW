@@ -6,7 +6,8 @@ class FeedComponent extends HTMLElement {
 		});
 	}
 	render(data) {
-		this.innerHTML = `<textarea>${data}</textarea>`;
+		this.innerHTML = `<link rel="stylesheet" href="feed/feed-style.css">
+                            <textarea readonly>${data}</textarea>`;
 	}
 }
 customElements.define('feed-component', FeedComponent);
